@@ -191,6 +191,8 @@
         <span class="next" onclick="nextImage()">&#10095;</span>
     </div>
 
+    <button onclick="toggleSidebar()" style="position:fixed; top:20px; left:220px;">☰</button>
+
     <script>
         let images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"];
         let currentIndex = 0;
@@ -228,6 +230,14 @@
         function closeModal() {
             document.getElementById('contactModal').style.display = 'none';
         }
+        function toggleSidebar() {
+        let sidebar = document.querySelector(".sidebar");
+        if (sidebar.style.left === "0px") {
+            sidebar.style.left = "-200px";
+        } else {
+            sidebar.style.left = "0px";
+        }
+    }
     </script>
 </body>
 </html>
