@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAZARYAN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: gray;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            left: 0;
+            top: 0;
+            text-align: left;
+        }
+        .main-content {
+            margin-left: 220px;
+            width: calc(100% - 220px);
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .contact-button {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #ff6600;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* Стили для модального окна контактов */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+        .close {
+            cursor: pointer;
+            color: red;
+            font-size: 20px;
+            position: absolute;
+            right: 10px;
+            top: 5px;
+        }
+        /* Стили для модального окна с изображениями */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .image-modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+        .image-modal .close, .prev, .next {
+            position: absolute;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .image-modal .close {
+            top: 20px;
+            right: 30px;
+        }
+        .prev, .next {
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Mes competences</h2>
+        <ul>
+            <li>Plâtrerie</li>
+            <li>Peinture</li>
+            <li>Création tout les types de forme avec placoplâtre</li>
+            <li>Creation, montage, assemblage cloison aluminium</li>
+        </ul>
+        <div class="contact-info">
+            <h2>Contactez-moi</h2>
+            <p>📞 <a href="tel:+33652251070">+33 6 52 25 10 70</a></p>
+            <p>@ <a href="tigranazaryan@yahoo.com">tigranazaryan@yahoo.com</a></p>
+            <p>Instagram <a href="Instagram:renovation">renovation</a></p>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">NAZARYAN</div>
+        <div class="header">artisan</div>
+        <div class="gallery">
+            <img src="1.jpg" alt="1" onclick="openImage(0)">
+            <img src="2.jpg" alt="2" onclick="openImage(1)">
+            <img src="3.jpg" alt="3" onclick="openImage(2)">
+            <img src="4.jpg" alt="4" onclick="openImage(2)">
+            <img src="5.jpg" alt="5" onclick="openImage(2)">
+            <img src="6.jpg" alt="6" onclick="openImage(2)">
+            <img src="7.jpg" alt="7" onclick="openImage(2)">
+            <img src="8.jpg" alt="8" onclick="openImage(2)">
+            <img src="9.jpg" alt="9" onclick="openImage(2)">
+            <img src="10.jpg" alt="10" onclick="openImage(2)">
+            <img src="11.jpg" alt="11" onclick="openImage(2)">
+            <img src="12.jpg" alt="12" onclick="openImage(2)">
+            <img src="13.jpg" alt="13" onclick="openImage(2)">
+            <img src="14.jpg" alt="14" onclick="openImage(2)">
+            <img src="15.jpg" alt="15" onclick="openImage(2)">
+            <img src="16.jpg" alt="16" onclick="openImage(2)">
+            <img src="17.jpg" alt="17" onclick="openImage(2)">
+        </div>
+    </div>
+
+    <!-- Кнопка для связи -->
+    <div class="contact-button" onclick="openModal()">Telephoner</div>
+
+    <!-- Модальное окно контактов -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Contacter-moi</h2>
+            <p>📞 <a href="tel:+33652251070">+33 6 52 25 10 70</a></p>
+        </div>
+    </div>
+
+    <!-- Модальное окно увеличенного изображения -->
+    <div id="imageModal" class="image-modal">
+        <span class="close" onclick="closeImage()">&times;</span>
+        <span class="prev" onclick="prevImage()">&#10094;</span>
+        <img id="modalImg" src="">
+        <span class="next" onclick="nextImage()">&#10095;</span>
+    </div>
+
+    <script>
+        let images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"];
+        let currentIndex = 0;
+
+        function openImage(index) {
+            currentIndex = index;
+            document.getElementById('modalImg').src = images[currentIndex];
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+        
+        function closeImage() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            document.getElementById('modalImg').src = images[currentIndex];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById('modalImg').src = images[currentIndex];
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "ArrowLeft") prevImage();
+            if (event.key === "ArrowRight") nextImage();
+            if (event.key === "Escape") closeImage();
+        });
+
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
